@@ -1,11 +1,39 @@
 // Data for creating link boxes
 var linkData = [
   {
+    header: 'Dev',
+    links: [
+      {title: 'github', link: 'https://www.github.com'},
+      {title: 'codepen', link: 'https://www.codepen.io'},
+      {title: 'freecodecamp', link: 'https://www.freecodecamp.com'},
+      {title: 'stackoverflow', link: 'http://stackoverflow.com/'}
+    ]
+  },
+  {
+    header: 'Admin',
+    links: [
+      {title: 'google domains', link: 'https://domains.google'},
+      {title: 'namecheap', link: 'https://www.namecheap.com/'},
+      {title: 'digitalocean', link: 'https://www.digitalocean.com/'},
+      {title: 'heroku', link: 'https://dashboard.heroku.com/apps'}
+    ]
+  },
+  {
     header: 'Reddit',
     links: [
       {title: 'front', link: 'https://www.reddit.com'},
       {title: 'r/webdev', link: 'https://www.reddit.com/r/webdev'},
-      {title: 'r/civ', link: 'https://www.reddit.com/r/civ'}
+      {title: 'r/civ', link: 'https://www.reddit.com/r/civ'},
+      {title: 'r/television', link: 'https://www.reddit.com/r/television'}
+    ]
+  },
+  {
+    header: 'Social Media',
+    links: [
+      {title: 'facebook', link: 'https://www.facebook.com'},
+      {title: 'linkedin', link: 'https://www.linkedin.com'},
+      {title: 'meetup', link: 'https://www.meetup.com'},
+      {title: 'discord', link: 'https://discordapp.com/'}
     ]
   }
 ];

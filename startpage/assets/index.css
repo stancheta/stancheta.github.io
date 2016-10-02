@@ -7,9 +7,9 @@ body {
 
 h1 {
   font-family: 'Bree Serif', serif;
-  font-size: 3em;
+  font-size: 4em;
   text-align: center;
-  margin: 0.75em 0 1em 0;
+  margin: 1.75em 0 1em 0;
 }
 
 .col-centered {
@@ -69,6 +69,7 @@ margin: 0 auto;
 
 .link-body {
   background-color: #D8DEE9;
+  font-size: 1.15em;
 }
 
 .link-body ul {
