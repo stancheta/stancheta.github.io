@@ -1,8 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Bree+Serif';
 
 body {
-  background-color: #1B2B34;
-  color: #6699CC;
+  background-color: #44536E;
+  color: #FFFAEE;
 }
 
 h1 {
@@ -17,6 +17,28 @@ float: none;
 margin: 0 auto;
 }
 
+.row:first-of-type {
+  margin-bottom: 5em;
+}
+
+.form-control:focus {
+  border-color: #D9795A;
+  box-shadow: none;
+}
+
+/* Search Bar */
+.btn-accent {
+  background-color: #fff;
+  border-color: #adadad;
+  color: #333;
+}
+
+.btn-accent:hover, .btn-accent:focus {
+  background-color: #CFBCB2;
+  border-color: #adadad;
+  color: #333;
+}
+
 .dropdown-menu li {
   color: #333;
   display: block;
@@ -28,6 +50,39 @@ margin: 0 auto;
 }
 
 .dropdown-menu li:hover {
-  background-color: #f5f5f5;
+  background-color: #CFBCB2;
   color: #262626;
+}
+
+/* link boxes */
+.link-header {
+  background-color: #E3B382;
+  text-align: center;
+}
+
+.link-header h2 {
+  color: #f5f5f5;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0.15em;
+}
+
+.link-body {
+  background-color: #D8DEE9;
+}
+
+.link-body ul {
+  padding: 1em;
+}
+
+.link-body li {
+  list-style: none;
+}
+
+.link-body a {
+  color: #333;
+}
+.link-body a:hover {
+  color: #D9795A;
+  text-decoration: none;
 }
