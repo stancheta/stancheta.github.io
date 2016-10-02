@@ -1,0 +1,33 @@
+@import 'https://fonts.googleapis.com/css?family=Bree+Serif';
+
+body {
+  background-color: #1B2B34;
+  color: #6699CC;
+}
+
+h1 {
+  font-family: 'Bree Serif', serif;
+  font-size: 3em;
+  text-align: center;
+  margin: 0.75em 0 1em 0;
+}
+
+.col-centered {
+float: none;
+margin: 0 auto;
+}
+
+.dropdown-menu li {
+  color: #333;
+  display: block;
+  font-weight: 400;
+  line-height: 1.42857143;
+  padding: 3px 20px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f5f5f5;
+  color: #262626;
+}
