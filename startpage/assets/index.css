@@ -17,7 +17,7 @@ float: none;
 margin: 0 auto;
 }
 
-.row:first-of-type {
+.container-fluid .row {
   margin-bottom: 5em;
 }
 
