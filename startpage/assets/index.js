@@ -40,7 +40,10 @@ var linkData = [
 
 // query strings bases
 var searchStrings = {
-  Google: 'https://www.google.com/search?q='
+  Google: 'https://www.google.com/search?q=',
+  Youtube: 'https://www.youtube.com/results?search_query=',
+  Amazon: 'https://smile.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=',
+  IMDB: 'http://www.imdb.com/find?ref_=nv_sr_fn&q='
 };
 
 /* helpers */
@@ -53,6 +56,11 @@ function $on(target, type, callback) {
 // helper function for query selector
 function $qs(target, selectors) {
   return target.querySelector(selectors);
+}
+
+// helper function for query selector
+function $qsa(target, selectors) {
+  return target.querySelectorAll(selectors);
 }
 
 // helper function to append children
@@ -84,12 +92,33 @@ var searchBox = (function() {
   var inputString = $qs(document, '.form-control');
   var searchVal = $qs(document, '#search-val');
   var searchButton = $qs(document, '#search-button');
+  var dropdown = $qs(document, '#search-dropdown');
   var ENTERKEY = 13;
 
   // handles search event by redirecting to search link
   function handleSearch() {
     window.location.href = searchStrings[searchVal.textContent] +
                             inputString.value.split(' ').join('+');
+  }
+
+  // sets the list elements for the dropdown
+  function setDropdownItems() {
+    for (key in searchStrings) {
+      if (!searchStrings.hasOwnProperty(key)) {
+        continue;
+      }
+      var dItem = $newElement(document, 'li');
+      dItem.textContent = key;
+      $on(dItem, 'click', function() {
+        dropdownEventHandler(this.textContent);
+      });
+      $append(dropdown, dItem);
+    }
+  }
+
+  // sets event handlers for dropdown menu
+  function dropdownEventHandler(value) {
+    searchVal.textContent = value;
   }
 
   // set events for search bar
@@ -104,8 +133,9 @@ var searchBox = (function() {
 
   // initializes module
   function init() {
+    setDropdownItems();
     setSearchEventHandlers();
-  };
+  }
 
   return {
     init: init
@@ -116,9 +146,7 @@ var searchBox = (function() {
 /* module for creating link boxes */
 var linkBoxes = (function() {
   var linkRoot = $qs(document, '#links-root');
-  var node = document.createTextNode("Hello world");
   var bootstrapClasses = 'col-xs-12 col-sm-12 col-md-4 col-lg-3';
-  var asdf = $newElement(document, 'div')
 
   function setLinkList(links) {
     var linkBodyList = $newElement(document, 'ul');
@@ -150,7 +178,7 @@ var linkBoxes = (function() {
     linkHeaderText.textContent = headerText;
     $append(linkHeaderDiv, linkHeaderText);
     return linkHeaderDiv;
-  };
+  }
 
   // sets link box
   function setLinkBoxes() {
@@ -161,7 +189,7 @@ var linkBoxes = (function() {
       $append(newLinkBox, setLinkBody(link.links));
       $append(linkRoot, newLinkBox);
     });
-  };
+  }
 
   return {
     setLinkBoxes: setLinkBoxes
