@@ -10,5 +10,6 @@ Startpage Search Bar Commands:
 `:wiki <query>` searches query at wikipedia.org
 `:whoami` returns ip address through my [whoami project](https://github.com/stancheta/fcc-whoami)
 `<site>.com` will redirect directly to a website
+`:(` will redirect to [sadtrombone.com](https://www.sadtrombone.com/?autoplay=true)
 
 Otherwise, the search bar will search the query at wherever site the dropdown menu is currently pointed at.

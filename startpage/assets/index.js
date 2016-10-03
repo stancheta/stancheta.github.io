@@ -113,6 +113,8 @@ var searchBox = (function() {
       newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
     } else if (/.com$/.test(query)) {
       newWindowLoc = 'http://' + query;
+    } else if (/^:\($/.test(query)) {
+      newWindowLoc = 'https://www.sadtrombone.com/?autoplay=true';
     } else {
       newWindowLoc = searchStrings[searchVal.textContent] +
                       query.split(' ').join(separator);
