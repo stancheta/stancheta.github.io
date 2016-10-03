@@ -43,7 +43,8 @@ var searchStrings = {
   Google: 'https://www.google.com/search?q=',
   Youtube: 'https://www.youtube.com/results?search_query=',
   Amazon: 'https://smile.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=',
-  IMDB: 'http://www.imdb.com/find?ref_=nv_sr_fn&q='
+  IMDB: 'http://www.imdb.com/find?ref_=nv_sr_fn&q=',
+  Wikipedia: 'https://en.wikipedia.org/wiki/'
 };
 
 /* helpers */
@@ -100,14 +101,21 @@ var searchBox = (function() {
   function handleSearch() {
     var newWindowLoc;
     var query = inputString.value;
+    var separator = searchVal.textContent === 'Wikipedia' ? '_' : '+';
 
     if (/^r \w/.test(query)) {
       newWindowLoc = 'https://www.reddit.com/r/' + query.split(' ')[1];
     } else if (/^:def \w/.test(query)) {
       newWindowLoc = 'http://www.dictionary.com/browse/' + query.split(' ')[1];
+    } else if (/^:wiki \w/.test(query)) {
+      newWindowLoc = searchStrings['Wikipedia'] + query.split(' ').slice(1).join('_');
+    } else if (/^:whoami$/.test(query)) {
+      newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
+    } else if (/.com$/.test(query)) {
+      newWindowLoc = 'http://' + query;
     } else {
       newWindowLoc = searchStrings[searchVal.textContent] +
-                      query.split(' ').join('+');
+                      query.split(' ').join(separator);
     }
 
     window.location.href = newWindowLoc;
