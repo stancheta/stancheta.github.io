@@ -98,8 +98,16 @@ var searchBox = (function() {
 
   // handles search event by redirecting to search link
   function handleSearch() {
-    window.location.href = searchStrings[searchVal.textContent] +
-                            inputString.value.split(' ').join('+');
+    var newWindowLoc;
+
+    if (/^r \w/.test(inputString.value)) {
+      newWindowLoc = 'https://www.reddit.com/r/' + inputString.value.split(' ')[1];
+    } else {
+      newWindowLoc = searchStrings[searchVal.textContent] +
+                      inputString.value.split(' ').join('+');
+    }
+
+    window.location.href = newWindowLoc;
   }
 
   // sets the list elements for the dropdown
