@@ -83,6 +83,7 @@ function $addClass(target, className) {
   target.classList.add(className);
 }
 
+// helper function to set a class
 function $setClass(target, className) {
   target.className = className;
 }
@@ -111,6 +112,7 @@ var searchBox = (function() {
       dItem.textContent = key;
       $on(dItem, 'click', function() {
         dropdownEventHandler(this.textContent);
+        inputString.focus();
       });
       $append(dropdown, dItem);
     }
@@ -148,20 +150,26 @@ var linkBoxes = (function() {
   var linkRoot = $qs(document, '#links-root');
   var bootstrapClasses = 'col-xs-12 col-sm-12 col-md-4 col-lg-3';
 
+  // sets singular link
+  function setLink(title, link) {
+    var newLink = $newElement(document, 'a');
+    newLink.textContent = title;
+    newLink.href = link;
+    return newLink;
+  }
+
+  // sets list of links
   function setLinkList(links) {
     var linkBodyList = $newElement(document, 'ul');
-    links.map(function(link) {
+    links.map(function(l) {
       var listObj = $newElement(document, 'li');
-      var listLink = $newElement(document, 'a');
-      listLink.href = link.link;
-      listLink.textContent = link.title;
-      $append(listObj, listLink);
+      $append(listObj, setLink(l.title, l.link));
       $append(linkBodyList, listObj);
     })
     return linkBodyList;
   }
 
-  //setLinkBody for link box
+  //sets body for link box
   function setLinkBody(links) {
     var linkBodyDiv = $newElement(document, 'div');
     $addClass(linkBodyDiv, 'link-body');
