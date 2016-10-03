@@ -99,12 +99,15 @@ var searchBox = (function() {
   // handles search event by redirecting to search link
   function handleSearch() {
     var newWindowLoc;
+    var query = inputString.value;
 
-    if (/^r \w/.test(inputString.value)) {
-      newWindowLoc = 'https://www.reddit.com/r/' + inputString.value.split(' ')[1];
+    if (/^r \w/.test(query)) {
+      newWindowLoc = 'https://www.reddit.com/r/' + query.split(' ')[1];
+    } else if (/^:def \w/.test(query)) {
+      newWindowLoc = 'http://www.dictionary.com/browse/' + query.split(' ')[1];
     } else {
       newWindowLoc = searchStrings[searchVal.textContent] +
-                      inputString.value.split(' ').join('+');
+                      query.split(' ').join('+');
     }
 
     window.location.href = newWindowLoc;
