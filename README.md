@@ -6,3 +6,9 @@ My start page was inspired by [this post](https://www.reddit.com/r/unixporn/comm
 
 Startpage Search Bar Commands:
 `r <subreddit>` offers a quick way to go to a subreddit
+`:def <query>` searches query at dictionary.com
+`:wiki <query>` searches query at wikipedia.org
+`:whoami` returns ip address through my [whoami project](https://github.com/stancheta/fcc-whoami)
+`<site>.com` will redirect directly to a website
+
+Otherwise, the search bar will search the query at wherever site the dropdown menu is currently pointed at.
