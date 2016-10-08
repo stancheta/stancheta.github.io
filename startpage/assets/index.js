@@ -84,7 +84,7 @@ function $addClass(target, className) {
   target.classList.add(className);
 }
 
-// helper function to set a class
+// helper function to set class
 function $setClass(target, className) {
   target.className = className;
 }
@@ -111,7 +111,7 @@ var searchBox = (function() {
       newWindowLoc = searchStrings['Wikipedia'] + query.split(' ').slice(1).join('_');
     } else if (/^:whoami$/.test(query)) {
       newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
-    } else if (/.com$/.test(query)) {
+    } else if (/(.com|.io|.org)$/.test(query)) {
       newWindowLoc = 'http://' + query;
     } else if (/^:\($/.test(query)) {
       newWindowLoc = 'https://www.sadtrombone.com/?autoplay=true';
@@ -123,7 +123,7 @@ var searchBox = (function() {
     window.location.href = newWindowLoc;
   }
 
-  // sets the list elements for the dropdown
+  // sets list items for the dropdown
   function setDropdownItems() {
     for (key in searchStrings) {
       if (!searchStrings.hasOwnProperty(key)) {
@@ -136,10 +136,11 @@ var searchBox = (function() {
     }
   }
 
-  // sets event handlers for dropdown menu
+  // sets event handler for dropdown menu
   function setDropdownEventHandler(target) {
     $on(target, 'click', function() {
       searchVal.textContent = this.textContent;
+      inputString.focus();
     });
   }
 
@@ -210,7 +211,7 @@ var linkBoxes = (function() {
 
   // sets link box
   function setLinkBoxes() {
-    linkData.map( function(link) {
+    linkData.forEach( function(link) {
       var newLinkBox = $newElement(document, 'div');
       $setClass(newLinkBox, bootstrapClasses);
       $append(newLinkBox, setLinkHeader(link.header));
@@ -223,6 +224,8 @@ var linkBoxes = (function() {
     setLinkBoxes: setLinkBoxes
   };
 })();
+
+/* initializers */
 
 searchBox.init();
 linkBoxes.setLinkBoxes();
