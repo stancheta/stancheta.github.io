@@ -131,20 +131,19 @@ var searchBox = (function() {
       }
       var dItem = $newElement(document, 'li');
       dItem.textContent = key;
-      $on(dItem, 'click', function() {
-        dropdownEventHandler(this.textContent);
-        inputString.focus();
-      });
+      setDropdownEventHandler(dItem);
       $append(dropdown, dItem);
     }
   }
 
   // sets event handlers for dropdown menu
-  function dropdownEventHandler(value) {
-    searchVal.textContent = value;
+  function setDropdownEventHandler(target) {
+    $on(target, 'click', function() {
+      searchVal.textContent = this.textContent;
+    });
   }
 
-  // set events for search bar
+  // set event handlers for search bar
   function setSearchEventHandlers() {
     $on(document, 'keydown', function(event) {
       if (event.which === ENTERKEY) {
