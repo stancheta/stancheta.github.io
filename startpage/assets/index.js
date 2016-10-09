@@ -88,6 +88,11 @@ function $setClass(target, className) {
   target.className = className;
 }
 
+// helper function to check class
+function $hasClass(target, className) {
+  return target.classList.contains(className);
+}
+
 /* module for searching */
 var searchBox = (function() {
   var inputString = $qs(document, '.form-control');
@@ -145,9 +150,16 @@ var searchBox = (function() {
   }
   // sets event handler for toggling dropdown menu
   function setDropdownToggle() {
-    $on(dropdownButton, 'click', function() {
-      this.classList.toggle('open');
-    })
+    $on(document, 'click', function(evt) {
+      var tar  = evt.target;
+
+      if (tar && $hasClass(tar, 'dropdown-toggle')) {
+        dropdownButton.classList.toggle('open');
+      }
+      else if (tar && !$hasClass(tar, 'dropdown-toggle') && $hasClass(dropdownButton, 'open')) {
+        dropdownButton.classList.toggle('open');
+      }
+    });
   }
 
   // set event handlers for search bar
