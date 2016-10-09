@@ -12,6 +12,10 @@ h1 {
   margin: 1.75em 0 1em 0;
 }
 
+.input-group-btn img {
+  width: 1em;
+}
+
 .col-centered {
 float: none;
 margin: 0 auto;
