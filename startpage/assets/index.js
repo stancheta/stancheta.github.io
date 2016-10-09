@@ -94,6 +94,7 @@ var searchBox = (function() {
   var searchVal = $qs(document, '#search-val');
   var searchButton = $qs(document, '#search-button');
   var dropdown = $qs(document, '#search-dropdown');
+  var dropdownButton = $qs(document, '.input-group-btn');
   var ENTERKEY = 13;
 
   // handles search event by redirecting to search link
@@ -142,6 +143,12 @@ var searchBox = (function() {
       inputString.focus();
     });
   }
+  // sets event handler for toggling dropdown menu
+  function setDropdownToggle() {
+    $on(dropdownButton, 'click', function() {
+      this.classList.toggle('open');
+    })
+  }
 
   // set event handlers for search bar
   function setSearchEventHandlers() {
@@ -156,6 +163,7 @@ var searchBox = (function() {
   // initializes module
   function init() {
     setDropdownItems();
+    setDropdownToggle();
     setSearchEventHandlers();
   }
 
