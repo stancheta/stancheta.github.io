@@ -115,7 +115,7 @@ var searchBox = (function() {
       newWindowLoc = searchStrings['Wikipedia'] + encodeURIComponent(query.slice(6));
     } else if (/^:whoami$/.test(query)) {
       newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
-    } else if (/^((http[s]?|file):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/.test(query)) {
+    } else if (/(\.com|\.org|\.io)$/.test(query)) {
       newWindowLoc = 'http://' + query;
     } else if (/^:l/.test(query)) {
       newWindowLoc = 'http://localhost:' + (query.split(' ')[1] || defaultLocalHost);
