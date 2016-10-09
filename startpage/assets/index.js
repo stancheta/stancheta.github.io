@@ -1,3 +1,5 @@
+/* Config */
+
 // Data for creating link boxes
 var linkData = [
   {
@@ -42,10 +44,12 @@ var linkData = [
 var searchStrings = {
   Google: 'https://www.google.com/search?q=',
   Youtube: 'https://www.youtube.com/results?search_query=',
-  Amazon: 'https://smile.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=',
+  Amazon: 'https://smile.amazon.com/s/?field-keywords=',
   IMDB: 'http://www.imdb.com/find?ref_=nv_sr_fn&q=',
   Wikipedia: 'https://en.wikipedia.org/wiki/'
 };
+
+var defaultLocalHost = '8000';
 
 /* helpers */
 
@@ -79,11 +83,6 @@ function $newText(target, text) {
   return target.createTextNode(text);
 }
 
-// helper function to add classes
-function $addClass(target, className) {
-  target.classList.add(className);
-}
-
 // helper function to set class
 function $setClass(target, className) {
   target.className = className;
@@ -101,23 +100,23 @@ var searchBox = (function() {
   function handleSearch() {
     var newWindowLoc;
     var query = inputString.value;
-    var separator = searchVal.textContent === 'Wikipedia' ? '_' : '+';
 
-    if (/^r \w/.test(query)) {
+    if (/^(:r|r) \w/.test(query)) {
       newWindowLoc = 'https://www.reddit.com/r/' + query.split(' ')[1];
     } else if (/^:def \w/.test(query)) {
       newWindowLoc = 'http://www.dictionary.com/browse/' + query.split(' ')[1];
     } else if (/^:wiki \w/.test(query)) {
-      newWindowLoc = searchStrings['Wikipedia'] + query.split(' ').slice(1).join('_');
+      newWindowLoc = searchStrings['Wikipedia'] + encodeURIComponent(query.slice(6));
     } else if (/^:whoami$/.test(query)) {
       newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
-    } else if (/(.com|.io|.org)$/.test(query)) {
+    } else if (/^((http[s]?|file):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/.test(query)) {
       newWindowLoc = 'http://' + query;
+    } else if (/^:l/.test(query)) {
+      newWindowLoc = 'http://localhost:' + (query.split(' ')[1] || defaultLocalHost);
     } else if (/^:\($/.test(query)) {
       newWindowLoc = 'https://www.sadtrombone.com/?autoplay=true';
     } else {
-      newWindowLoc = searchStrings[searchVal.textContent] +
-                      query.split(' ').join(separator);
+      newWindowLoc = searchStrings[searchVal.textContent] + encodeURIComponent(query);
     }
 
     window.location.href = newWindowLoc;
@@ -193,7 +192,7 @@ var linkBoxes = (function() {
   //sets body for link box
   function setLinkBody(links) {
     var linkBodyDiv = $newElement(document, 'div');
-    $addClass(linkBodyDiv, 'link-body');
+    $setClass(linkBodyDiv, 'link-body');
     var linkBodyList = setLinkList(links);
     $append(linkBodyDiv, linkBodyList);
     return linkBodyDiv;
@@ -202,7 +201,7 @@ var linkBoxes = (function() {
   //sets header for link box
   function setLinkHeader(headerText) {
     var linkHeaderDiv = $newElement(document, 'div');
-    $addClass(linkHeaderDiv, 'link-header');
+    $setClass(linkHeaderDiv, 'link-header');
     var linkHeaderText = $newElement(document, 'h2');
     linkHeaderText.textContent = headerText;
     $append(linkHeaderDiv, linkHeaderText);
