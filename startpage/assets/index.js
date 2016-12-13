@@ -21,6 +21,24 @@ var linkData = [
     ]
   },
   {
+    header: 'Organization',
+    links: [
+      {title: 'waveapps', link: 'https://waveapps.com'},
+      {title: 'basecamp', link: 'https://basecamp.com/'},
+      {title: 'wunderlist', link: 'https://www.wunderlist.com/'},
+      {title: 'meistertask', link: 'https://www.meistertask.com/'}
+    ]
+  },
+  {
+    header: 'Entertainment',
+    links: [
+      {title: 'youtube', link: 'https://youtube.com'},
+      {title: 'netflix', link: 'https://www.netflix.com'},
+      {title: 'mangastreams', link: 'http://mangastream.com/'},
+      {title: 'kingdom', link: 'https://turnipfarmers.wordpress.com/'}
+    ]
+  },
+  {
     header: 'Reddit',
     links: [
       {title: 'front', link: 'https://www.reddit.com'},
@@ -115,7 +133,7 @@ var searchBox = (function() {
       newWindowLoc = searchStrings['Wikipedia'] + encodeURIComponent(query.slice(6));
     } else if (/^:whoami$/.test(query)) {
       newWindowLoc = 'https://stancheta-whoami.herokuapp.com/';
-    } else if (/(\.com|\.org|\.io)$/.test(query)) {
+    } else if (/(\.com|\.org|\.io)/.test(query)) {
       newWindowLoc = 'http://' + query;
     } else if (/^:l/.test(query)) {
       newWindowLoc = 'http://localhost:' + (query.split(' ')[1] || defaultLocalHost);

@@ -13,8 +13,8 @@ h1 {
 }
 
 .col-centered {
-float: none;
-margin: 0 auto;
+  float: none;
+  margin: 0 auto;
 }
 
 .container-fluid .row {
@@ -70,6 +70,7 @@ margin: 0 auto;
 .link-body {
   background-color: #D8DEE9;
   font-size: 1.15em;
+  margin-bottom: 1em;
 }
 
 .link-body ul {
